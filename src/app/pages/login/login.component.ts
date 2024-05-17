@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
     }
     this.loginForm = this.formBuilder.group({
       email: ['atish@gmail.com', [Validators.required, Validators.email]],
-      password: ['Atish@1234', Validators.required]
+      password: ['******', Validators.required]
     });
     // sessionStorage.setItem('token',"undefined")
 
