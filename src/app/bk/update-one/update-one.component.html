@@ -1,0 +1,419 @@
+<div class="create_new">
+    <div class="page_title active">
+        {{title}}
+    </div>
+    <div class="breadcrumb"><span>Satta Matka</span> / <span>Admin</span> / <span>{{title}}</span> / <span>Edit</span>
+    </div>
+    
+    <container-element [ngSwitch]="value">
+        <div *ngSwitchCase="'regular-bazaar'">
+            <div class="row">
+                <div class="col_6">
+                    <div class="inner_col bg_light">
+                        <h3>Edit Regular Bazaar</h3>
+                        <form (ngSubmit)="regularBazaarDataFunc(name.value)">
+                            
+                            <div class="form_control">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Bazaar Name</mat-label>
+                                    <input matInput placeholder="Ex. Kalyan" [value]="titleName" #name/>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="form_control bg_light_gray">
+                                <div style="position: relative;">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Open Time</mat-label>
+                                        <input matInput  [value]="openTime"  />
+                                    </mat-form-field>
+                                    <span class="overlay_field"></span>
+                                </div>
+                                <input class="w_50" type="time" (change)="setTimeFunc(SetOpenTime.value, 'open')"
+                                    #SetOpenTime >
+                            </div>
+
+                            <div class="form_control bg_light_gray">
+                                <div style="position: relative;">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Close Time</mat-label>
+                                        <input matInput   [value]="closeTime" />
+                                    </mat-form-field>
+                                    <span class="overlay_field"></span>
+
+                                </div>
+                                <input class="w_50" type="time" (change)="setTimeFunc(SetCloseTime.value , 'close')"
+                                    #SetCloseTime>
+                            </div>
+
+                            <div class="form_row">
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field>
+                                            <mat-label>Publish:</mat-label>
+                                            <mat-select [(value)]="isActive" >
+                                                    <mat-option value="yes">Yes</mat-option>
+                                                    <mat-option value="no">No</mat-option>
+        
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field>
+                                            <mat-label>Is Highlighted:</mat-label>
+                                            <mat-select [(value)]="selected" >
+                                                    <mat-option value="yes">Yes</mat-option>
+                                                    <mat-option value="no">No</mat-option>
+        
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                           
+
+                            <div class="form_group">
+                                <mat-form-field>
+                                    <mat-label>Open Market Days:</mat-label>
+                                    <mat-select matNativeControl multiple [(value)]="daysSelecte" >
+                                                    <mat-option value="monday">Monday</mat-option>
+                                                    <mat-option value="tuesday">Tuesday</mat-option>
+                                                    <mat-option value="wednesday">Wednesday</mat-option>
+                                                    <mat-option value="thursday">Thursday</mat-option>
+                                                    <mat-option value="friday">Friday</mat-option>
+                                                    <mat-option value="saturday">Saturday</mat-option>
+                                                    <mat-option value="sunday">Sunday</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <button mat-raised-button class="w_100" color="primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col_6">
+                    <div class="inner_col">
+                        <table class="table cus_table table_border">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Opening</th>
+                                    <th>Closing</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Kalyan</td>
+                                    <td>10:00 AM</td>
+                                    <td>02:00 PM</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div *ngSwitchCase="'starline-bazaar'">
+            <div class="row">
+                <div class="col_6">
+                    <div class="inner_col bg_light">
+                        <h3>Edit Starline Bazaar</h3>
+                        <form (ngSubmit)="starlineDataFunc(name.value)">
+                            
+                            <div class="form_control">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Bazaar Name</mat-label>
+                                    <input matInput placeholder="Ex. Kalyan" [value]="titleName" #name/>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="form_control bg_light_gray">
+                                <div style="position: relative;">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Open Time</mat-label>
+                                        <input matInput  [value]="openTime"  />
+                                    </mat-form-field>
+                                    <span class="overlay_field"></span>
+                                </div>
+                                <input class="w_50" type="time" (change)="setTimeFunc(SetOpenTime.value, 'open')"
+                                    #SetOpenTime >
+                            </div>
+
+                            <div class="form_control bg_light_gray">
+                                <div style="position: relative;">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Close Time</mat-label>
+                                        <input matInput   [value]="closeTime" />
+                                    </mat-form-field>
+                                    <span class="overlay_field"></span>
+
+                                </div>
+                                <input class="w_50" type="time" (change)="setTimeFunc(SetCloseTime.value , 'close')"
+                                    #SetCloseTime>
+                            </div>
+
+                            <div class="form_row">
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field>
+                                            <mat-label>Publish:</mat-label>
+                                            <mat-select [(value)]="isActive" >
+                                                    <mat-option value="yes">Yes</mat-option>
+                                                    <mat-option value="no">No</mat-option>
+        
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field>
+                                          <mat-label>Hour Interval</mat-label>
+                                          <mat-select [(value)]="hourInterval">
+                                            <mat-option value="60">1 Hour</mat-option>
+                                            <mat-option value="120">2 Hour</mat-option>
+                                            <mat-option value="180">3 Hour</mat-option>
+                                            <mat-option value="240">4 Hour</mat-option>
+                                            <mat-option value="300">5 Hour</mat-option>
+                                          </mat-select>
+                                        </mat-form-field>
+                                      </div>
+                                </div>
+                            </div>
+                           
+
+                            <!-- <div class="form_group">
+                                <mat-form-field>
+                                    <mat-label>Open Market Days:</mat-label>
+                                    <mat-select matNativeControl multiple [(value)]="daysSelecte" >
+                                                    <mat-option value="Monday">Monday</mat-option>
+                                                    <mat-option value="Tuesday">Tuesday</mat-option>
+                                                    <mat-option value="Wednesday">Wednesday</mat-option>
+                                                    <mat-option value="Thursday">Thursday</mat-option>
+                                                    <mat-option value="Friday">Friday</mat-option>
+                                                    <mat-option value="Saturday">Saturday</mat-option>
+                                                    <mat-option value="Sunday">Sunday</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div> -->
+
+                            <button mat-raised-button class="w_100" color="primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col_6">
+                    <div class="inner_col">
+                        <table class="table cus_table table_border">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Opening</th>
+                                    <th>Closing</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Kalyan</td>
+                                    <td>10:00 AM</td>
+                                    <td>02:00 PM</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div *ngSwitchCase="'king-bazaar'">
+            <div class="row">
+                <div class="col_6">
+                    <div class="inner_col bg_light">
+                        <h3>Edit King Bazaar</h3>
+                        <form (ngSubmit)="kingDataFunc(name.value)">
+                            <div class="form_control">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Bazaar Name</mat-label>
+                                    <input matInput placeholder="Ex. Kalyan" [value]="titleName" #name/>
+                                </mat-form-field>
+                            </div>
+
+
+                            <div class="form_control bg_light_gray">
+                                <div style="position: relative;">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Open Time</mat-label>
+                                        <input matInput  [value]="openTime"  />
+                                    </mat-form-field>
+                                    <span class="overlay_field"></span>
+                                </div>
+                                <input class="w_50" type="time" (change)="setTimeFunc(SetOpenTime.value, 'open')"
+                                    #SetOpenTime >
+                            </div>
+
+                            <div class="form_control bg_light_gray">
+                                <div style="position: relative;">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Close Time</mat-label>
+                                        <input matInput   [value]="closeTime" />
+                                    </mat-form-field>
+                                    <span class="overlay_field"></span>
+
+                                </div>
+                                <input class="w_50" type="time" (change)="setTimeFunc(SetCloseTime.value , 'close')"
+                                    #SetCloseTime>
+                            </div>
+
+                            <div class="form_control">
+                                <mat-form-field>
+                                    <mat-label>Publish:</mat-label>
+                                    <mat-select [(value)]="isActive" >
+                                            <mat-option value="yes">Yes</mat-option>
+                                            <mat-option value="no">No</mat-option>
+
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+                            
+                            <button mat-raised-button class="w_100" color="primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col_6">
+                    <div class="inner_col">
+                        <table class="table cus_table table_border">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Opening</th>
+                                    <th>Closing</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Kalyan</td>
+                                    <td>10:00 AM</td>
+                                    <td>02:00 PM</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div *ngSwitchCase="'users'">
+            <div class="row">
+                <div class="col_6">
+                    <div class="inner_col bg_light">
+                        <h3>Edit User</h3>
+                        <form (ngSubmit)="userDataFunc(uname.value,uphone.value,urole.value,uactive.value)">
+
+                            <div class="form_row">
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Full Name</mat-label>
+                                            <input matInput placeholder="Atish lote" [value]="fullName" #uname >
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field>
+                                            <mat-label>Email</mat-label>
+                                            <input matInput placeholder="pat@example.com" [value]="email" disabled>
+
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form_row">
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field>
+                                            <mat-label>Password</mat-label>
+                                            <input matInput [type]="hide ? 'password' : 'text'" [value]="password" disabled>
+                        
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field hintLabel="Max 10 characters">
+                                            <mat-label>Phone</mat-label>
+                                            <input matInput #input maxlength="10" placeholder="Ex. 8668767314" [value]="phone" #uphone>
+                                            <mat-hint align="end">{{input.value.length}}/10</mat-hint>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form_row">
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field>
+                                            <mat-label>Permission</mat-label>
+                                            <mat-select [(value)]="permission" #urole>
+                                                <!-- @for (food of foods; track food) { -->
+                                                <mat-option value="un-assign">Un Assign</mat-option>
+                                                <mat-option value="admin">Admin</mat-option>
+                                                <mat-option value="manager">Manager</mat-option>
+                                                <mat-option value="updater">Updater</mat-option>
+                                                <mat-option value="viewer">Viewer</mat-option>
+                                                <!-- } -->
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field>
+                                            <mat-label>Is Active</mat-label>
+                                            <mat-select [(value)]="userActive" #uactive>
+                                                <mat-option value="0">No</mat-option>
+                                                <mat-option value="1">Yes</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <button mat-raised-button class="w_100" color="primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col_6">
+                    <div class="inner_col">
+                        <table class="table cus_table table_border">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Permission</th>
+                                    <th>Active</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Atish Lote</td>
+                                    <td>atish&#64;gmail.com</td>
+                                    <td>Admin</td>
+                                    <td>Yes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </container-element>
+
+
+</div>

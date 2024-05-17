@@ -1,0 +1,52 @@
+<div class="dashboard">
+    <div class="inner_dashboard">
+        <aside>
+            <img class="logo" src="https://themes.getappui.com/techzaa/velonic/layouts/assets/images/logo.png" alt="">
+            <div class="side_nav">
+                <div class="side_menu">
+                    <nav>
+                        <ul>
+                            <li routerLink="/bk/home" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                                true}" class="menu_link"><mat-icon>dashboard_customize</mat-icon><span
+                                    class="menu_item">Dashboard</span></li>
+
+                            <li routerLink="regular-bazaar" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                                false}" class="menu_link"><mat-icon>notifications</mat-icon><span
+                                    class="menu_item">Regular Bazaar</span></li>
+
+                            <li routerLink="starline-bazaar" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                                false}" class="menu_link"><mat-icon>grade</mat-icon><span
+                                    class="menu_item">Starline Bazaar</span></li>
+
+                            <li routerLink="king-bazaar" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                                        false}" class="menu_link"><mat-icon>military_tech></mat-icon><span class="menu_item">King Bazaar</span></li>
+
+
+                            <li routerLink="users" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                                false}" class="menu_link"><mat-icon>group</mat-icon><span class="menu_item">All
+                                    Users</span></li>
+
+                            <li routerLink="profile" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:
+                                false}" class="menu_link"><mat-icon>person_edit</mat-icon><span
+                                    class="menu_item">Profile</span></li>
+
+                            <li (click)="logOut()" class="menu_link"><mat-icon>logout</mat-icon><span
+                                            class="menu_item">Logout</span></li>
+
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </aside>
+        <div class="main_body">
+            <div class="float_left">
+                <header><mat-icon>menu</mat-icon>  Satta Matka </header>
+                <div class="dashboard_body">
+                    <!-- <router-outlet></router-outlet> -->
+                    <router-outlet></router-outlet>
+                </div>
+                <footer>footer</footer>
+            </div>
+        </div>
+    </div>
+</div>

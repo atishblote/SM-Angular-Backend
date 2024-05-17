@@ -1,0 +1,35 @@
+$aside-width : 108;
+$extended-width: 108+112;
+
+.dashboard {
+    height: 100vh;
+    background: white;
+}
+.inner_dashboard , .main_body{
+    /* display: grid; */
+    height: 100%;
+}
+aside {
+    float: left;
+    width: #{$aside-width}px;
+    background: #2f3a4c;
+    color: white;
+    height: 100%;
+    transition:  0.6s  ease;
+}
+aside:hover {
+    width: #{$extended-width}px;
+    transition: width 0.4s ease;
+}
+.main_body {
+    height: 100%;
+    /* float: left; */
+    /* width: calc(100% - 108px); */
+    background: red;
+    clear: right;
+}
+header {
+    padding: 20px;
+    background: white;
+    margin-left: #{$aside-width}px;
+}

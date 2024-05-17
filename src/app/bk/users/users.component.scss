@@ -1,0 +1,21 @@
+@import "../../../styles.scss";
+.create_new {
+  height: 100% !important;
+  overflow-y: scroll;
+}
+.form_row{
+  display: flex;
+  gap: 20px;
+}
+.form_col {
+  width: 100%;
+}
+
+.user_active{
+  background-color: $accent-color;
+  padding: 5px 10px;
+}
+.user_deactive{
+  background-color: $error-color;
+  padding: 5px 10px;
+}

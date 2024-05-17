@@ -1,1 +1,287 @@
 /* You can add global styles to this file, and also import other style files */
+@import "ngx-toastr/toastr";
+
+$primary-color: #673ab7;
+$secondary-color: #978bab;
+$tertiary-color: #c17e8f;
+$dark-color: #000000ef;
+$accent-color: #ffd740;
+$error-color: #ff5449;
+$input-color: #f6f4fa;
+$Hover-color: #9281b1;
+$white-color: #ffffff;
+
+$primary-font-family: "Outfit", sans-serif;
+$secondary-font-family: "Poppins", sans-serif;
+$box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+$box-shadow-primary: 0 0px 4px rgba(221 228 239 / 0.25),
+  0 2px 4px rgba(221 228 239 / 0.25);
+$border-color: $secondary-color;
+$primary-button-color: $primary-color;
+$light-button-color: $secondary-color;
+
+.primary--button {
+  background: $primary-color;
+  font-size: 1rem;
+  padding: 0.7em 2em;
+  color: white;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  border-radius: 4px;
+  text-transform: uppercase;
+  &:hover {
+    background: $tertiary-color;
+  }
+}
+.secondary--button {
+  font-size: 1.2rem;
+  padding: 0.6em 2em;
+  background: $white-color;
+  color: $tertiary-color;
+  border: 2px solid $tertiary-color;
+  cursor: pointer;
+  outline: none;
+  border-radius: 4px;
+  &:hover {
+    background: $tertiary-color;
+    color: $white-color;
+    border: 2px solid $tertiary-color;
+  }
+}
+
+:root {
+  font-family: "Outfit", sans-serif;
+
+  //   font-weight: 700; /* You can specify the font weight for individual elements */
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+/* Add more styles as needed */
+
+html,
+body {
+  box-sizing: border-box;
+  font-weight: 400;
+  margin: 0;
+  font-family: $secondary-font-family;
+}
+.text_center {
+  text-align: center;
+}
+.text_right {
+  text-align: right;
+}
+.text_left {
+  text-align: left;
+}
+
+.w_100 {
+  width: 100%;
+}
+.h_100 {
+  height: 100%;
+}
+a {
+  color: $primary-color;
+  cursor: pointer;
+  &:hover {
+    color: $tertiary-color;
+  }
+}
+
+::placeholder {
+  color: rgb(171, 171, 171);
+}
+.row {
+  display: flex;
+  column-gap: 12px;
+  width: 100%;
+}
+.col_6 {
+  width: 50%;
+}
+.col_3 {
+  width: 30%;
+}
+.col_4 {
+  width: 25%;
+}
+.col_7 {
+  width: 70%;
+}
+.page_title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.breadcrumb {
+  color: $secondary-color;
+  font-weight: 300;
+}
+.inner_wrap {
+  padding: 28px 0px;
+}
+.inner_body {
+  background: $white-color;
+  border-radius: 5px;
+  padding: 1.4em 1em;
+}
+table {
+  width: 100%;
+  font-family: $secondary-font-family;
+  border-collapse: collapse;
+  td {
+    padding: 10px;
+  }
+  td:hover {
+    background-color: $input-color;
+  }
+}
+.table_border {
+  tr {
+    border-bottom: 1px dotted #e1e1e1;
+    height: 56px;
+  }
+}
+.table_no_border {
+  td {
+    border: 0px solid;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+}
+.bold {
+  font-weight: bold;
+}
+.small_text {
+  color: $secondary-color;
+}
+table {
+  background-color: $white-color;
+  td {
+    text-align: left;
+  }
+  td:last-child {
+    text-align: center;
+  }
+  thead {
+    th {
+      padding: 10px;
+      text-align: left;
+    }
+    th:last-child {
+      text-align: center;
+    }
+  }
+  .h-td-trinety {
+    background-color: $primary-color;
+    color: $accent-color;
+    padding: 5px 10px;
+    font-weight: 500;
+    font-size: 16px;
+  }
+}
+mat-tab-group {
+  span.mdc-tab__text-label {
+    font-family: "Outfit" !important;
+    letter-spacing: 0px;
+    font-size: 1rem;
+  }
+}
+.bg_light {
+  background: $white-color;
+  box-shadow: $box-shadow-primary;
+}
+.inner_col {
+  padding: 26px;
+  h3 {
+    font-size: 23px;
+    font-weight: 500;
+  }
+  mat-form-field {
+    width: 100%;
+  }
+  .form_control {
+    margin-bottom: 10px;
+  }
+  .form_control {
+    display: flex;
+  }
+  input[type="time"] {
+    height: 40px;
+    border: 0;
+    background: whitesmoke;
+  }
+  .bg_light_gray {
+    border-bottom: 1px solid gray;
+    background: whitesmoke;
+  }
+  .w_100 {
+    width: 100%;
+  }
+  // label {
+  //   font-size: 17px;
+  //   color: gray;
+  //   width: 40%;
+  //   padding: 10px;
+  // }
+  .w_50 {
+    width: 60%;
+  }
+}
+
+mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+.highlighted {
+  background-color: $accent-color;
+  padding: 5px 10px;
+}
+// mat prograss
+.mat_progress {
+  position: absolute;
+  z-index: 9;
+  background: #ffffff14;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media screen and (max-width: 1024px) {
+  span.menu_item {
+    opacity: 0;
+    height: 0;
+  }
+  img.logo {
+    opacity: 0;
+  }
+  aside {
+    width: 79px !important;
+  }
+  .main_body {
+    width: calc(100% - 80px) !important;
+    margin-left: 80px !important;
+  }
+  aside:hover {
+    width: 211px !important;
+    z-index: 99999999;
+    transition: 0.4s;
+}
+aside:hover .menu_item, aside:hover img.logo  {
+  opacity: 1;
+  height: auto;
+  transition: 2s;
+}
+}

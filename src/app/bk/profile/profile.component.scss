@@ -1,0 +1,79 @@
+@import "../../../styles.scss";
+
+label {
+  font-size: 17px;
+  width: 40%;
+  padding: 10px;
+  font-family: "Outfit";
+}
+.banner_image {
+  width: 100%;
+  height: 252px;
+  overflow: hidden;
+}
+.cus_row{
+  display: flex;
+  gap: 20px;
+}
+.cus_col{
+  width: 50%;
+}
+
+.form_control {
+  flex-direction: column;
+  display: flex;
+}
+input {
+  padding: 11px;
+  font-size: 15px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #e6e2e2a1;
+}
+.profile_div{
+  position: relative;
+}
+.profile_area {
+  padding: 31px;
+  background: white;
+  border-radius: 20px 20px 0px 0px;
+  position: absolute;
+  top: 48%;
+  width: -webkit-fill-available;
+  /* margin: 10px; */
+  left: 0;
+}
+h3 {
+  font-size: 1.7rem !important;
+  font-weight: 500 !important;
+  font-family: 'Outfit' !important;
+  margin-bottom: 7px !important;
+}
+.user_id {
+  font-weight: 500;
+}
+span.edit_btn {
+    background: $accent-color;
+    font-size: 12px !important;
+    padding: 3px 5px;
+    border-radius: 4px;
+    position: absolute;
+    right: 0;
+    top: 8px;
+    height: 15px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    text-transform: capitalize;
+    cursor: pointer;
+    box-shadow: $box-shadow-primary;
+  mat-icon{
+    font-size: 12px !important;
+
+    height: 15px !important;
+    width: 15px !important;
+
+  }
+}

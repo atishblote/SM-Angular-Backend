@@ -1,0 +1,61 @@
+<div class="create_new">
+    <div class="page_title active">All List</div>
+    <div class="breadcrumb">
+        <span>Satta Matka</span> / <span>Admin</span> /
+        <span><a>{{ title }}</a></span>
+    </div>
+    <form [formGroup]="updateJobiPanel" (ngSubmit)="submitUpdateJodiPanel(updateJobiPanel.value)" style="display: flex; justify-content: end; margin-top: -50px;">
+
+        <mat-form-field>
+            <mat-label>Select</mat-label>
+            <mat-select formControlName="bazaar_id">
+
+                @for(b of bazarList; track b){
+                <mat-option value="{{b.name}}">{{b.name}}</mat-option>
+                }
+                
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date_time" >
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            
+        </mat-form-field>
+        <span>
+            <button mat-raised-button type="submit" color="primary">Search</button>
+        </span>
+
+    </form>
+    <div class="d_f">
+        <ng-container>
+            @for(jodi of getBazaarDataAll ; track jodi){
+
+            <div class="inner_flex" (click)="openDialog(jodi.id, jodi.id)">
+                <span class="delete_box">
+                    <mat-icon>delete</mat-icon>
+                </span>
+                <table class="table ">
+
+                    <tbody>
+
+                        <tr class="text-center">
+                            <td>{{jodi?.open}}</td>
+                            <td class="jodi">{{jodi?.jodi}}</td>
+                            <td>@if(jodi?.close){ {{jodi?.close}} }@else{--}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">{{jodi?.date_time}}</td>
+                        </tr>
+                        <tr>
+
+                            <td colspan="3">@if(jodi?.name){ {{jodi?.name}} }@else{--}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            }
+        </ng-container>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+label {
+  font-size: 17px;
+  color: gray;
+  width: 40%;
+  padding: 10px;
+}
+.page_title {
+  text-transform: capitalize;
+}
+mat-tab-group.mat-mdc-tab-group.mat-primary {
+  height: calc(100% - 20%);
+  overflow: scroll;
+  position: absolute;
+  width: 99%;
+}
+.opening {
+  color: red;
+  vertical-align: middle;
+  animation: glowup 1s infinite forwards;
+}
+@keyframes glowup {
+  0% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+

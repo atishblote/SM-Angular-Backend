@@ -1,0 +1,62 @@
+@import '../../../styles.scss'; 
+.bg_image{
+    background:url('/assets/img/sm-back.jpg') ;
+    height: 100%;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: bottom;
+}
+.login{
+    height: 100vh;
+    width: 100%;
+}
+.form_body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.inner_form {
+    width: 363px;
+    background: white;
+    padding: 38px;
+    border-radius: 10px;
+    box-shadow: $box-shadow;
+}
+
+// field
+.inner_group {
+    display: grid;
+    grid-template-columns: 8% auto;
+    margin: 10px 0px;
+    align-items: center;
+    /* background-color: #f6f4fa; */
+    /* border-radius: 4px; */
+    /* overflow: hidden; */
+    border-bottom: 1px solid $secondary-color;
+}
+input {
+    /* height: 34px; */
+    font-size: 1rem;
+    padding: 11px;
+    outline: none;
+    border: 0;
+    color: $secondary-color;
+    background: inherit;
+}
+.inner_group mat-icon {
+    color: $tertiary-color;
+    // color: $secondary-color;
+    /* background: #c17e8f2b; */
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+form{
+    margin-top: 40px;
+}
+.form_group{
+    margin-bottom: 20px;
+}

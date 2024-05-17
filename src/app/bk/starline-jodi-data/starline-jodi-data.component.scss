@@ -1,0 +1,34 @@
+label {
+    font-size: 17px;
+    color: gray;
+    width: 40%;
+    padding: 10px;
+  }
+  .page_title {
+    text-transform: capitalize;
+  }
+  .user_deactive {
+    background-color: #ff5449;
+    padding: 5px 10px;
+}
+.user_active {
+  background-color: #ffd740;
+  padding: 5px 10px;
+}
+.inner_col:last-child {
+  /* display: grid; */
+  /* grid-template-columns: repeat(5, 1fr); */
+  overflow-y: scroll;
+  max-height: 63vh;
+  padding: 26px;
+}
+.table_body {
+    max-height: 80vh !important;
+    overflow-y: scroll;
+}
+.serch_div {
+    display: inline;
+    display: flex;
+    justify-content: end;
+    margin-top: -50px;
+}

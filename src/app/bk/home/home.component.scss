@@ -1,0 +1,60 @@
+@import "../../../styles.scss";
+
+h2{
+    font-family: $primary-font-family;
+    color: $primary-color;
+}
+.inner_body{
+    position: relative;
+    box-shadow: $box-shadow-primary;
+    img{
+        position: absolute;
+        right: 13px;
+        top: 44px;
+        width: 56px;
+        opacity: 0.5;
+    }
+    .details{
+        padding: 10px 0px;
+    }
+}
+.inner_body .numbers {
+    font-size: 26px;
+    font-weight: 600;
+    font-family: 'Outfit';
+}
+.inner_body span:last-child {
+    font-size: 16px;
+    margin-left: 7px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-bottom: 9px;
+}
+table td{
+    font-size: 17px;
+    padding-left: 0;
+    padding-right: 0;
+
+}
+.d_flex{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    color: $secondary-color;
+}
+.d_flex  span {
+    margin: 0 !important;
+    padding: 0 !important;
+    color: $tertiary-color;
+    font-weight: 700;
+    font-size: 24px !important;
+}
+.last_entry{
+    margin-top: 15px;
+}
+.route_link{
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    cursor: pointer;
+}

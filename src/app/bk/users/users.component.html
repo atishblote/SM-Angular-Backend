@@ -1,0 +1,259 @@
+<div class="create_new">
+    <div class="page_title active">
+        {{title}}
+    </div>
+    <div class="breadcrumb"><span>Satta Matka</span> / <span>Admin</span> / <span><a>{{title}}</a></span></div>
+
+
+
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" [(selectedIndex)]="selectedTabIndex">
+        @if(isRole == 'superadmin' || isRole == 'admin' || isRole == 'manager' || isRole == 'viewer' || isRole == 'updater'){
+        <mat-tab label="All Users">
+            <div class="table_body">
+                <table class="cus_table table_border">
+                    <thead>
+                        <tr>
+                            <th>Sr.</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Permission</th>
+                            <th>Created at</th>
+                            <th>Update at</th>
+                            <th style="width: 120px;">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (user of allUsers ; track user){
+                        <tr>
+                            <td><input type="checkbox" name="" id=""></td>
+                            <td>{{user.full_name}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.phone}}</td>
+                            <td>{{user.role}}</td>
+                            <td>{{user.created_at | date:'d-M-yyyy, h:mm a' }}</td>
+                            <td>{{user.updated_at | date:'d-M-yyyy, h:mm a'}}</td>
+
+                            @if(user.is_active){
+                            <td><span class="user_active">Active</span></td>
+                            }
+                            @if(!user.is_active){
+                            <td><span class="user_deactive">De-Active</span></td>
+                            }
+
+
+
+                        </tr>
+                        }
+                        <!-- <tr>
+                            <td><input type="checkbox" name="" id=""></td>
+                            <td>Smith argon</td>
+                            <td>smith&#64;gmail.com</td>
+                            <td>+91 23231214551</td>
+                            <td>Viewer</td>
+                            <td><span class="user_deactive">De-Active</span></td>
+                            <td>02-03-2024: 12:03 AM</td>
+                            <td></td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </mat-tab>
+    }
+    @if(isRole == 'superadmin' || isRole == 'admin'){
+        <mat-tab label="Edit User">
+            <div class="table_body">
+                <table class="cus_table table_border">
+                    <thead>
+                        <tr>
+                            <th>Sr.</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Permission</th>
+                            <th>Created at</th>
+                            <th>Updated at</th>
+                            <th >Is Active</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (user of allUsers ; track user){
+                        <tr>
+                            <td><input type="checkbox" name="" id=""></td>
+                            <td>{{user.full_name}}</td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.phone}}</td>
+                            <td>{{user.role}}</td>
+                            <td>{{user.created_at | date:'M-d-yyyy, h:mm a' }}</td>
+                            <td>{{user.updated_at | date:'M-d-yyyy, h:mm a'}}</td>
+                            @if(user.is_active){
+                            <td><span class="user_active">Active</span></td>
+                            }
+                            @if(!user.is_active){
+                            <td><span class="user_deactive">De-Active</span></td>
+                            }
+
+                            <td>
+                                <button routerLink="reset/{{user.id}}" [queryParams]="{ name: user.full_name }" mat-mini-fab color="basic">
+                                    <mat-icon>lock_reset</mat-icon>
+                                </button>
+                                <button [routerLink]="['update-one/12']"
+                                    [queryParams]="{ name: 'users', action: 'edit-users', id: user.id, path:'user' }" mat-mini-fab color="warn">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                                <button mat-mini-fab color="accent" (click)="openDialog(user.id)">
+                                    <mat-icon>delete</mat-icon>
+                                </button>
+
+                            </td>
+
+                        </tr>
+                        }
+                        <!-- <tr>
+                            <td><input type="checkbox" name="" id=""></td>
+                            <td>Smith argon</td>
+                            <td>smith&#64;gmail.com</td>
+                            <td>+91 23231214551</td>
+                            <td>Viewer</td>
+                            <td><span class="user_deactive">De-Active</span></td>
+                            <td>02-03-2024: 12:03 AM</td>
+                            <td></td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+
+        </mat-tab>
+    }
+    @if(isRole == 'superadmin' || isRole == 'admin' || isRole == 'manager'){
+        <mat-tab label="Create New User">
+            <div class="row">
+                <div class="col_6">
+                    <div class="inner_col bg_light">
+                        <h3>Create New User</h3>
+                        <form [formGroup]="createUserForm" (ngSubmit)="createUserFunc(createUserForm.value)">
+
+                            <div class="form_row">
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>Full Name</mat-label>
+                                            <input matInput placeholder="Atish lote" formControlName="full_name" autocomplete>
+                                            <mat-error>You must enter a Full name</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field>
+                                            <mat-label>Email</mat-label>
+                                            <input matInput placeholder="pat@example.com" formControlName="email" autocomplete>
+                                            <mat-error>You must enter a value</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form_row">
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field>
+                                            <mat-label>Password</mat-label>
+                                            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" autocomplete="new-password">
+                                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                            </button>
+                                            <mat-error> Cap,Letter(min 4),Special(&#64;$!%*?&),Num</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field hintLabel="Max 10 characters">
+                                            <mat-label>Phone</mat-label>
+                                            <input matInput #input maxlength="10" placeholder="Ex. 8668767314" formControlName="phone" autocomplete>
+                                            <mat-hint align="end">{{input.value.length}}/10</mat-hint>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form_row">
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field>
+                                            <mat-label>Permission</mat-label>
+                                            <mat-select formControlName="role">
+                                                <!-- @for (food of foods; track food) { -->
+                                                    <mat-option value="un-assign">Un Assign</mat-option>
+                                                    <mat-option value="manager">Manager</mat-option>
+                                                    <mat-option value="admin">Admin</mat-option>
+                                                    <mat-option value="updater">Updater</mat-option>
+                                                    <mat-option value="viewer">Viewer</mat-option>
+                                               
+                                                <!-- } -->
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="form_col">
+                                    <div class="form_control">
+                                        <mat-form-field>
+                                            <mat-label>Is Active</mat-label>
+                                            <mat-select formControlName="is_active">
+                                                <mat-option value="no">No</mat-option>
+                                                <mat-option value="yes">Yes</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <button type="submit" mat-raised-button class="w_100" color="primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col_6">
+                    <div class="inner_col">
+                        <table class="table cus_table table_border">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Permission</th>
+                                    <th>Active</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (user of allUsers ; track user){
+                                <tr>
+                                    <td>{{user.full_name}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.role}}</td>
+                                    <td>
+                                        @if(user.is_active){
+                                            Yes
+                                        }@else{
+                                            No
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </mat-tab>
+    }
+    </mat-tab-group>
+
+
+
+</div>

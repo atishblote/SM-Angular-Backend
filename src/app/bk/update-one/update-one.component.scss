@@ -1,0 +1,26 @@
+
+@import "../../../styles.scss";
+
+.form_row{
+  display: flex;
+  gap: 20px;
+}
+.form_col {
+  width: 100%;
+}
+label {
+  font-size: 17px;
+  color: gray;
+  width: 40%;
+  padding: 10px;
+}
+.page_title {
+  text-transform: capitalize;
+}
+span.overlay_field {
+  background: #f4f4f463;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+}

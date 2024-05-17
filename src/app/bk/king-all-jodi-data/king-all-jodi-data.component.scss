@@ -1,0 +1,10 @@
+.serch_div {
+    display: inline;
+    display: flex;
+    justify-content: end;
+    margin-top: -50px;
+}
+.table_body {
+    max-height: 70vh !important;
+    overflow-y: scroll;
+}

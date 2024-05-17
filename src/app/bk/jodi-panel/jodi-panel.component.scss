@@ -1,0 +1,48 @@
+.d_f {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+
+    overflow-y: scroll;
+    max-height: 77vh;
+}
+.inner_flex {
+    padding: 10px;
+    position: relative;
+    overflow: hidden;
+}
+.text-center td{
+    text-align: center;
+}
+.jodi{
+    font-weight: 600;
+    font-size: 19px;
+}
+.delete_box{
+    position: absolute;
+    right: 0;
+    opacity: 0;
+    top: 0;
+    z-index: -1;
+    background-color: #ff5449;
+}
+.delete_box{
+    position: absolute;
+    right: -50px;
+    opacity: 0;
+    top: 10px;
+    z-index: -1;
+    background-color: #ff5449;
+    transition: 0.5s;
+
+}
+.inner_flex:hover .delete_box{
+    right: 12px;
+    opacity: 1;
+    top: 10px;
+    z-index: 99;
+    cursor: pointer;
+    color: white;
+    background-color: #ff5449;
+    padding: 2px;
+    transition: 0.5s;
+}

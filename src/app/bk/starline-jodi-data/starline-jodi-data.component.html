@@ -1,0 +1,56 @@
+<div class="create_new">
+    <div class="page_title active">All List</div>
+    <div class="breadcrumb">
+        <span>Satta Matka</span> / <span>Admin</span> /
+        <span><a>{{ title }}</a></span>
+
+        <div class="serch_div">
+            <mat-form-field class="example-form-field">
+                <mat-label>Search Here</mat-label>
+                <input matInput type="text" [(ngModel)]="term">
+                @if (term) {
+                  <button matSuffix mat-icon-button aria-label="Clear" (click)="term=''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                }
+              </mat-form-field>
+        </div>
+    </div>
+
+    <div class="table_body">
+
+        <table class="cus_table table_border">
+            <thead>
+                <tr>
+                    <th>Sr.</th>
+                    <th>Name</th>
+                    <th>Open</th>
+                    <th>Close</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(s of starlineData | filter:term; track s){
+
+                <tr>
+                    <td><input type="checkbox" name="" id="" /></td>
+                    <td>{{s?.name}}</td>
+                    <td>{{s?.open}}</td>
+                    <td>{{s?.jodi}}</td>
+                    <td>{{s?.date}}</td>
+                    <td>{{s?.time}}</td>
+                    <td>
+                       
+                        <button mat-mini-fab color="accent" (click)="openDialog(s.id,s.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

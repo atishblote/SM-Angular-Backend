@@ -1,0 +1,29 @@
+<!-- monthly-data.component.html -->
+
+<table>
+    <thead>
+      <tr>
+        <th>Date/Month</th>
+        @for(month of months ; track month){
+        <th >{{ month }}</th>
+        }
+    </tr>
+    </thead>
+    <tbody>
+        @for(day of daysInMonth ; track day){
+    
+      <ng-container>
+        <tr>
+          <td>{{ day }}</td>
+        @for(month of months ; track month){
+
+          <td >
+            {{ getDataForDayAndMonth(day, month) || '*' }}
+          </td>
+        }
+        </tr>
+      </ng-container>
+    }
+    </tbody>
+  </table>
+  

@@ -1,0 +1,103 @@
+@import "../../../styles.scss";
+$aside-width: 240;
+$extended-width: 108+112;
+
+.dashboard {
+  height: 100vh;
+  background: white;
+}
+.inner_dashboard,
+.main_body {
+  /* display: grid; */
+  height: 100%;
+}
+// aside {
+//     position: fixed;
+//     width: 240px;
+//     background: linear-gradient(156deg, #5c3dc3, #6f3dc3);
+//     color: white;
+//     height: 100%;
+//     transition: 0.6s ease;
+// }
+// aside:hover {
+//     width: #{$extended-width}px;
+//     transition: width 0.4s ease;
+// }
+.main_body {
+//   height: 100%;
+  background: rgb(238 240 252 / 1);
+  /* clear: right; */
+  position: absolute;
+  width: calc(100% - #{$aside-width}px);
+  position: fixed;
+  margin-left: #{$aside-width}px;
+}
+header,
+footer {
+  padding: 20px;
+  background: white;
+  // margin-left: #{$aside-width}px;
+}
+header {
+  // box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  background: #ffffffa6;
+  backdrop-filter: blur(1px);
+  /* border-bottom: 1px solid #dfdfdf; */
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px,
+    rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  font-size: 21px;
+  font-weight: 500;
+  font-family: "Outfit";
+}
+.side_nav,
+.side_menu {
+  height: 100%;
+}
+.dashboard_body {
+  height: 100%;
+  display: block;
+  height: 84vh;
+  padding: 40px 25px;
+}
+
+aside {
+  position: fixed;
+  width: 240px;
+  background: linear-gradient(156deg, #5c3dc3, #6f3dc3);
+  color: white;
+  height: 100%;
+  transition: 0.6s ease;
+  .logo {
+    margin: auto 40px;
+    width: 125px;
+    padding: 19px 0;
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+    li {
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      font-size: 16px;
+      font-family: $primary-font-family;
+    }
+    .menu_link{
+      cursor: pointer;
+    }
+    .menu_link:hover {
+      background: #1c103261;
+    }
+    .menu_link.active-link {
+      // background: rgba(28, 16, 50, 0.3803921569);
+      color: #472c8c;
+      background: #fffffffa;
+      border-right: 1px solid;
+    }
+    .menu_link:hover mat-icon {
+      color: $tertiary-color;
+    }
+  }
+}

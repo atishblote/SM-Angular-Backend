@@ -1,0 +1,47 @@
+<div class="login">
+    <div class="bg_image">
+        <div class="form_body">
+            <div class="inner_form">
+                <h1 class="heading text_center">Create Account</h1>
+
+                <form [formGroup]="signUpForm" (ngSubmit)="signUpSubmit(signUpForm.value)">
+                    <div class="form_group">
+                        <label>Full Name  @if(signUpForm.get('full_name').invalid && signUpForm.get('full_name').touched){ <span style="color: red;" >(Invalid)</span>}</label>
+                        <div class="inner_group">
+                            <mat-icon color="primary" fontIcon="person"></mat-icon>
+                            <input type="text" formControlName="full_name" placeholder="Aakash pote" >
+                        </div>
+                    </div>
+                    
+                    <div class="form_group">
+                        <label>Email @if(signUpForm.get('email').invalid && signUpForm.get('email').touched){ <span style="color: red;" >(Invalid)</span>}</label>
+                        <div class="inner_group">
+                            <mat-icon color="primary" fontIcon="mail"></mat-icon>
+                            <input type="email" formControlName="email" placeholder="aakash@gmail.com">
+                        </div>
+                    </div>
+                   
+                    <div class="form_group">
+                        <label>Number @if(signUpForm.get('phone').invalid && signUpForm.get('phone').touched){ <span style="color: red;" >(Invalid)</span>}</label>
+                        <div class="inner_group">
+                            <mat-icon color="primary" fontIcon="call"></mat-icon>
+                            <input type="number" formControlName="phone" placeholder="+91 12396 45670">
+                        </div>
+                    </div>
+                    <div class="form_group">
+                        <label>Password @if(signUpForm.get('password').invalid && signUpForm.get('password').touched){ <span style="color: red;" >('&#64;/#' max 8 length)</span>}</label>
+                        <div class="inner_group">
+                            <mat-icon color="primary" fontIcon="lock"></mat-icon>
+                            <input type="password" formControlName="password" placeholder="Enter strong password">
+                        </div>
+                    </div>
+                    
+                    <div class="form_group">
+                        <button type="submit"   class="primary--button w_100">Submit</button>
+                    </div>
+                </form>
+                <p class="text_center">I have an account? <a routerLink="/login">Login</a></p>
+            </div>
+        </div>
+    </div>
+</div>

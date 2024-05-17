@@ -1,0 +1,18 @@
+<div class="popup_div">
+    <!-- {{data.name}} -->
+    <div class="icon_div">
+        <mat-icon>delete</mat-icon>
+    </div>
+    <h2 mat-dialog-title>Do you want to detete !</h2>
+<!-- <mat-dialog-content>
+  <p>What's your favorite animal?</p>
+  <mat-form-field>
+    <mat-label>Favorite Animal</mat-label>
+    <input matInput [(ngModel)]="data.animal">
+  </mat-form-field>
+</mat-dialog-content> -->
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-flat-button color="primary" (click)="onYesClick()" [mat-dialog-close]="data.bazaarId" cdkFocusInitial>Ok</button>
+</mat-dialog-actions>
+</div>

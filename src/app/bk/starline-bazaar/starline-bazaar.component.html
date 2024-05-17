@@ -1,0 +1,343 @@
+<div class="create_new">
+    <div class="page_title active">All List</div>
+    <div class="breadcrumb">
+      <span>Satta Matka</span> / <span>Admin</span> /
+      <span
+        ><a>{{ title }}</a></span
+      >
+      <button routerLink="all-data">  All Data</button>
+    </div>
+  
+    
+    <!-- <app-animation-popup></app-animation-popup>    -->
+  
+    <mat-tab-group
+      mat-stretch-tabs="false"
+      mat-align-tabs="start"
+      [(selectedIndex)]="selectedTabIndex"
+    >
+    @if(isRole == 'superadmin' || isRole == 'admin' || isRole == 'manager' || isRole == 'viewer' || isRole == 'updater'){
+
+      <mat-tab label="All Bazaar">
+        <div class="table_body">
+          <table class="cus_table table_border">
+            <thead>
+              <tr>
+                <th>Sr.</th>
+                <th>Name</th>
+                <th>Open At</th>
+                <th>Close At</th>
+                <th>Hours</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th>Table Data</th>
+                <th >Is Active</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(s of starlineData; track s){
+
+                <tr>
+                  <td><input type="checkbox" name="" id="" /></td>
+                <td>{{s?.name}}</td>
+                <td>{{s?.open_time}}</td>
+                <td>{{s?.close_time}}</td>
+                <td>{{s?.time_interval}}(min)</td>
+                <td >{{s?.created_at | date : 'd/M/yy, h:mm a'}}</td>
+                <td >{{s?.updated_at | date : 'd/M/yy, h:mm a'}}</td>
+                <td> <button routerLink="jodi-data/{{s?.id}}" [queryParams]="{ name: s.name, open_time: s.open_time,close_time: s.close_time}" mat-flat-button color="primary">Data</button></td>
+                @if(s.is_active){
+                  <td><span class="user_active">Active</span></td>
+                  }
+                  @if(!s.is_active){
+                  <td><span class="user_deactive">De-Active</span></td>
+                  }
+              </tr>
+            }
+            </tbody>
+          </table>
+        </div>
+      </mat-tab>
+    }
+    @if(isRole == 'superadmin' || isRole == 'admin' || isRole == 'manager' || isRole == 'updater'){
+      <mat-tab label="Update Bazaar Number">
+        <div class="row">
+          <div class="col_6">
+            <div class="inner_col bg_light">
+              <!-- <h3>Create New Regular Bazaar</h3> -->
+              <form [formGroup]="updateStarlineJodi" (ngSubmit)="starlineJodiFunc(updateStarlineJodi.value)">
+                <div class="form_control">
+                  <mat-form-field>
+                    <mat-label>Select Bazaar</mat-label>
+                    <mat-select [(value)]="starlineID" (selectionChange)="onSelectionChange($event)"  formControlName="starline_id" >
+                      @for (bazaar of starlineData; track bazaar) {
+                      <mat-option [value]="bazaar.id">{{
+                        bazaar.name
+                      }}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="row">
+                  <div class="col_6">
+                    <div class="form_control">
+                      <mat-form-field>
+                        <mat-label>Select Hour</mat-label>
+                        <mat-select  formControlName="time">
+                          @for (bazaar of timeBreaks; track bazaar) {
+                          <mat-option [value]="bazaar">{{
+                            bazaar
+                          }}</mat-option>
+                          }
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col_6">
+                    <div class="form_control">
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Choose a date</mat-label>
+                        <input
+                          matInput
+                          [matDatepickerFilter]="myFilter"
+                          [matDatepicker]="picker"
+                          formControlName="date"
+                          />
+                        <mat-hint>MM/DD/YYYY</mat-hint>
+                        <mat-datepicker-toggle
+                          matIconSuffix
+                          [for]="picker"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+                
+               @if(showField){
+                <div class="row">
+                  <div class="col_6">
+                    <div class="form_control">
+                      <mat-form-field hintLabel="Max 3 Digit">
+                        <mat-label>Enter Open Number</mat-label>
+                        <input matInput #input maxlength="3" [(ngModel)]="openSJ" placeholder="Ex. 123" formControlName="open" />
+                        <mat-hint align="end">{{ input.value.length }}/3</mat-hint>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <div class="col_6">
+                    <div class="form_control">
+                      <mat-form-field hintLabel="Max 3 Digit">
+                        <mat-label>Enter jodi Number</mat-label>
+                        <input matInput #input2 maxlength="2"  [(ngModel)]="closeSJ" placeholder="Ex. 12"  formControlName="jodi"/>
+                        <mat-hint align="end">{{ input2.value.length }}/2</mat-hint>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                </div>
+               
+                <div class="form_control">
+                  <mat-form-field>
+                    <mat-label>Is Publish</mat-label>
+                    <mat-select [(ngModel)]="publishSJ" formControlName="is_active">
+                      <mat-option value="no">No</mat-option>
+                      <mat-option value="yes">Yes</mat-option>
+                    </mat-select>
+                   
+                  </mat-form-field>
+                </div>
+                <button type="submit" mat-raised-button class="w_100" color="primary">
+                  Update
+                </button>
+              }
+              @else{
+                <button (click)="getByDate(updateStarlineJodi.value)" type="button" mat-raised-button class="w_100" color="primary" [disabled]="updateStarlineJodi.get('starline_id').invalid || updateStarlineJodi.get('time').invalid || updateStarlineJodi.get('date').invalid">
+                  Get 
+                </button>
+              }
+              <button (click)="resetForm()" type="button" mat-button color="warn">
+                Reset
+              </button>
+              
+
+               
+              </form>
+            </div>
+          </div>
+          <div class="col_6">
+            <div class="inner_col">
+              <table class="table cus_table table_border">
+                <thead>
+                  <tr>
+                    <th>Time</th>
+                    <th>Jodi</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for(d of byDateData;track d){
+                  <tr>
+                    <td>{{d.time}}</td>
+                    <td>
+                      {{d.open}} - 
+                      {{d.jodi}}
+                    </td>
+                    <td>{{d.date}}</td>
+                    <td>
+                      <button (click)="deleteJodiSatrline(d.id)" mat-mini-fab color="accent"><mat-icon>delete</mat-icon></button>
+                      </td>
+                  </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    }
+    @if(isRole == 'superadmin' || isRole == 'admin' || isRole == 'manager'){
+      <mat-tab label="Edit Bazaar">
+        <div class="table_body">
+          <table class="cus_table table_border">
+            <thead>
+              <tr>
+                <th>Sr.</th>
+                <th>Name</th>
+                <th>Open At</th>
+                <th>Close At</th>
+                <th>Hours</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th >Is Active</th>
+                <th style="width: 100px;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(s of starlineData; track s){
+
+                <tr>
+                  <td><input type="checkbox" name="" id="" /></td>
+                <td>{{s?.name}}</td>
+                <td>{{s?.open_time}}</td>
+                <td>{{s?.close_time}}</td>
+                <td>{{s?.time_interval}} (min)</td>
+                <td >{{s?.created_at | date : 'd/M/yy, h:mm a'}}</td>
+                <td >{{s?.updated_at | date : 'd/M/yy, h:mm a'}}</td>
+                @if(s.is_active){
+                  <td><span class="user_active">Active</span></td>
+                  }
+                  @if(!s.is_active){
+                  <td><span class="user_deactive">De-Active</span></td>
+                  }
+                  <td>
+                    <button mat-mini-fab color="warn" [routerLink]="['update-one/12']" [queryParams]="{
+                        name: 'starline-bazaar',
+                        id : s.id,
+                        action: 'edit-bazaar',
+                        path:'starline'
+                      }">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button (click)="openDialog(s.id,s.id)" mat-mini-fab color="accent" >
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+              </tr>
+            }
+            </tbody>
+          </table>
+        </div>
+      </mat-tab>
+    }
+    @if(isRole == 'superadmin' || isRole == 'admin'){
+
+      <mat-tab label="Create New">
+        <div class="row">
+          <div class="col_6">
+            <div class="inner_col bg_light">
+              <h3>Create New Starline Bazaar</h3>
+              <form [formGroup]="createStalineForm" (ngSubmit)="createStarlineFn(createStalineForm.value)">
+                <div class="form_control">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Bazaar Name</mat-label>
+                    <input matInput placeholder="Ex. Kalyan" formControlName="name" />
+                  </mat-form-field>
+                </div>
+                <div class="row">
+                  <div class="col_6">
+                    <div class="form_control bg_light_gray">
+                      <label for="">Open Time</label>
+                      <input class="w_50" type="time"  formControlName="open_time"/>
+                    </div>
+                    @if (createStalineForm.get('open_time').invalid && createStalineForm.get('open_time').touched) {
+                      <mat-error>Required</mat-error>
+                      }
+                  </div>
+                  <div class="col_6">
+                    <div class="form_control bg_light_gray">
+                      <label for="">Close Time</label>
+                      <input class="w_50" type="time" formControlName="close_time" />
+                    </div>
+                    @if (createStalineForm.get('close_time').invalid && createStalineForm.get('close_time').touched) {
+                      <mat-error>Required</mat-error>
+                    }
+                  </div>
+                </div>
+  
+                <div class="form_control">
+                  <mat-form-field>
+                    <mat-label>Is Publish</mat-label>
+                    <mat-select formControlName="is_active">
+                      <mat-option value="0">No</mat-option>
+                      <mat-option value="1">Yes</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <div class="form_control">
+                  <mat-form-field>
+                    <mat-label>Hour Interval</mat-label>
+                    <mat-select formControlName="time_interval">
+                      <mat-option value="60">1 Hour</mat-option>
+                      <mat-option value="120">2 Hour</mat-option>
+                      <mat-option value="180">3 Hour</mat-option>
+                      <mat-option value="240">4 Hour</mat-option>
+                      <mat-option value="300">5 Hour</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+
+                <button type="submit" mat-raised-button class="w_100" color="primary">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="col_6">
+            <div class="inner_col">
+              <table class="table cus_table table_border">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Opening</th>
+                    <th>Closing</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Kalyan</td>
+                    <td>10:00 AM</td>
+                    <td>02:00 PM</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    }
+    </mat-tab-group>
+  </div>
+  

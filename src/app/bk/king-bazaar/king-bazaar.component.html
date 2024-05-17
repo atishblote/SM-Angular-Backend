@@ -1,0 +1,269 @@
+<div class="create_new">
+    <div class="page_title active">All List</div>
+    <div class="breadcrumb">
+      <span>Satta Matka</span> / <span>Admin</span> /
+      <span
+        ><a>{{ title }}</a></span
+      >
+      <button routerLink="all-data">All Data</button>
+    </div>
+  
+    
+    <!-- <app-animation-popup></app-animation-popup>    -->
+  
+    <mat-tab-group
+      mat-stretch-tabs="false"
+      mat-align-tabs="start"
+      [(selectedIndex)]="selectedTabIndex"
+    >
+    @if(isRole == 'superadmin' || isRole == 'admin' || isRole == 'manager' || isRole == 'viewer' || isRole == 'updater'){
+    
+      <mat-tab label="All Bazaar">
+        <div class="table_body">
+          <table class="cus_table table_border">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Open time</th>
+                <th>Close time</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th>Data</th>
+                <th style="width: 120px">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(k of  getKingBazaar; track k){
+                <tr>
+                <td>{{k.name}}</td>
+                <td>{{k.open_time}}</td>
+                <td>{{k.close_time}}</td>
+                <td>{{k.created_at}}</td>
+                <td>{{k.updated_at}}</td>
+                <td> <button routerLink="jodi-data/{{k?.id}}" [queryParams]="{ name: k.name, open_time: k.open_time,close_time: k.close_time}" mat-flat-button color="primary">Data</button></td>
+
+                @if(k.is_active){
+                  <td><span class="user_active">Active</span></td>
+                  }
+                  @else{
+                  <td><span class="user_deactive">De-Active</span></td>
+                  }
+                </tr>
+              }
+              
+            </tbody>
+          </table>
+        </div>
+      </mat-tab>
+    }
+    @if(isRole == 'superadmin' || isRole == 'admin' || isRole == 'manager' || isRole == 'updater'){
+
+      <mat-tab label="Update Bazaar Number">
+        <div class="row">
+          <div class="col_6">
+            <div class="inner_col bg_light">
+              <!-- <h3>Create New Regular Bazaar</h3> -->
+              <form [formGroup]="updateKingForm" (ngSubmit)="updateKingFun(updateKingForm.value)">
+                <div class="form_control">
+                  <mat-form-field>
+                    <mat-label>Select Bazaar name</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="food" formControlName="king_id">
+                      @for (bazaar of getKingBazaar; track bazaar) {
+                      <mat-option [value]="bazaar.id">{{
+                        bazaar.name
+                      }}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+                <div class="form_control">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Choose a date</mat-label>
+                    <input
+                      matInput
+                      [matDatepickerFilter]="myFilter"
+                      [matDatepicker]="picker"
+                      formControlName="date"
+                    />
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle
+                      matIconSuffix
+                      [for]="picker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                </div>
+  
+               
+                
+                @if(getByDate){
+                  <button (click)="getBydateFun(updateKingForm.value)" [disabled]="updateKingForm.get('king_id').invalid || updateKingForm.get('date').invalid" type="button" mat-raised-button class="w_100" color="primary">Get</button>
+                }@else{
+                  <div class="form_control">
+                    <mat-form-field hintLabel="Max 2 Digit">
+                      <mat-label>Jodi</mat-label>
+                      <input matInput #input maxlength="2" placeholder="Ex. 85" [(ngModel)]="jodi" formControlName="jodi" />
+                      <mat-hint align="end">{{ input.value.length }}/2</mat-hint>
+                    </mat-form-field>
+                  </div>
+                  <button type="submit" mat-raised-button class="w_100" color="primary">
+                    Update
+                  </button>
+                }
+              </form>
+            </div>
+          </div>
+          <div class="col_6">
+            <div class="inner_col" style="    max-height: 61vh;">
+              <table class="table cus_table table_border">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Jodi</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for( d of getByIdData; track d){
+                  <tr>
+                    <td>{{d.king_id}}</td>
+                    <td>{{d.jodi}}</td>
+                    <td>{{d.date}}</td>
+                    <td>                     
+                      <button (click)="deleteJodiKing(d.id, d.king_id)" mat-mini-fab color="accent"><mat-icon>delete</mat-icon></button>
+                    </td>
+                  </tr>
+                }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    }
+    @if(isRole == 'superadmin' || isRole == 'admin' || isRole == 'manager'){
+      <mat-tab label="Edit Bazaar">
+        <div class="table_body">
+          <table class="cus_table table_border">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Open Time</th>
+                <th>Close Time</th>
+                <th>Created At</th>
+                <th>Updated At</th>
+                <th>Status</th>
+                <th style="width: 120px">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(k of  getKingBazaar; track k){
+                <tr>
+                <td>{{k.name}}</td>
+                <td>{{k.open_time}}</td>
+                <td>{{k.close_time}}</td>
+                <td>{{k.created_at}}</td>
+                <td>{{k.updated_at}}</td>
+                @if(k.is_active){
+                  <td><span class="user_active">Active</span></td>
+                  }
+                  @else{
+                  <td><span class="user_deactive">De-Active</span></td>
+                  }
+                  <td>
+                    <button mat-mini-fab color="warn" [routerLink]="['update-one/12']" [queryParams]="{
+                      name: 'king-bazaar',
+                      id : k.id,
+                      action: 'edit-bazaar',
+                      path:'king'
+                    }">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button mat-mini-fab color="accent" (click)="openDialog(k.id,k.id)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </tr>
+              }
+              
+            </tbody>
+          </table>
+        </div>
+      </mat-tab>
+    }
+    @if(isRole == 'superadmin' || isRole == 'admin'){
+
+      <mat-tab label="Create New">
+        <div class="row">
+          <div class="col_6">
+            <div class="inner_col bg_light">
+              <h3>Create New King Bazaar</h3>
+              <form [formGroup]="createKingForm" (ngSubmit)="createKingFun(createKingForm.value)">
+                <div class="form_control">
+                  <mat-form-field class="example-full-width">
+                    <mat-label>Bazaar Name</mat-label>
+                    <input matInput placeholder="Ex. Kalyan" formControlName="name" />
+                  </mat-form-field>
+                </div>
+  
+                <div class="form_control bg_light_gray">
+                  <label for="">Open Time</label>
+                  <input class="w_50" type="time" formControlName="open_time" />
+                </div>
+                  @if (createKingForm.get('open_time').invalid && createKingForm.get('open_time').touched) {
+                    <mat-error>Required</mat-error>
+                    }
+                <div class="form_control bg_light_gray">
+                  <label for="">Close Time</label>
+                  <input class="w_50" type="time" formControlName="close_time" />
+                </div>
+                @if (createKingForm.get('close_time').invalid && createKingForm.get('close_time').touched) {
+                  <mat-error>Required</mat-error>
+                  }
+  
+                <div class="form_control">
+                  <mat-form-field>
+                    <mat-label>Is it Highlighed?</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" formControlName="is_active">
+                      @for (hilighted of isHighilited; track hilighted) {
+                      <mat-option [value]="hilighted.value">{{
+                        hilighted.viewValue
+                      }}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+               
+                <button type="submit" mat-raised-button class="w_100" color="primary">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+          <div class="col_6">
+            <div class="inner_col">
+              <table class="table cus_table table_border">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Opening</th>
+                    <th>Closing</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Kalyan</td>
+                    <td>10:00 AM</td>
+                    <td>02:00 PM</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    }
+    </mat-tab-group>
+  </div>
+  

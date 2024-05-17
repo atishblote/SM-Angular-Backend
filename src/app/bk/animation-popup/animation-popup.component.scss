@@ -1,0 +1,25 @@
+mat-icon {
+    background: #f10000;
+    padding: 10px;
+    border-radius: 51px;
+    font-size: 26px;
+    color: white;
+    height: 30px;
+    width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon_div {
+    text-align: center;
+    padding: 9px;
+}
+.popup_div {
+    width: 282px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+}

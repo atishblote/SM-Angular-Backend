@@ -1,0 +1,60 @@
+<div class="create_new">
+    <div class="page_title active">
+        Profile
+    </div>
+    <div class="breadcrumb"><span>Satta Matka</span> / <span>Admin</span> / <span><a>{{title}}</a></span></div>
+
+    <div class="profile_div">
+        <div class="banner_image">
+            <img src="assets/img/bg4.jpg" alt="">
+        </div>
+        <div class="profile_area">
+            <div class="cus_row">
+               <div class="col_3" style="position: relative;">
+                <img src="assets/img/user (3).png" width="58" alt="">
+                <h3>Jhon kary</h3>
+                <div class="user_id">ID-{{dataGet?.id}}</div>
+      
+                <span class="edit_btn"  routerLink="reset/{{dataGet?.id}}" [queryParams]="{ name: dataGet?.full_name }"> reset
+                    <mat-icon>lock</mat-icon>
+                </span>
+                @if(dataGet?.role == 'admin' || dataGet?.role == 'manager' ){
+
+
+                <span style="top:35px;" class="edit_btn" [routerLink]="['update-one/12']"
+                [queryParams]="{ name: 'users', action: 'edit-users', id: dataGet?.id, path:'user' }"> edit
+                    <mat-icon>edit</mat-icon>
+                </span>
+            }
+               </div>
+               <div class="col_7">
+                <div class="cus_row">
+                    <div class="cus_col">
+                        <div class="form_control">
+                            <label for="">Full Name :</label>
+                            <input type="text" disabled value="{{dataGet?.full_name}}">
+                        </div>
+                        <div class="form_control">
+                            <label for="">Phone :</label>
+                            <input type="text" disabled value="+91 {{dataGet?.phone}}">
+                        </div>
+                    </div>
+                    <div class="cus_col">
+                        <div class="form_control">
+                            <label for="">Email :</label>
+                            <input type="text" disabled value="{{dataGet?.email}}">
+                        </div>
+                        <div class="form_control">
+                            <label for="">Permission :</label>
+                            <input type="text" disabled value="{{dataGet?.role}}">
+                        </div>
+                    </div>
+
+                </div>
+               </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
