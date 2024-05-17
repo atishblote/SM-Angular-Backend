@@ -212,51 +212,60 @@ export class RegularBazaarComponent implements OnInit{
 
 
    // submit entry
-   submitUpdateJodiPanel(data:any){
-    console.log(data)
-    console.log(this.token)
-    if(this.updateJobiPanel.invalid){
-      this.toastr.warning("Fill all the fields", "WARN")
-    }else{
-      if(this.newJodi){
-        this.global.postWithToken(data,"jodi-panel/create",this.token).subscribe({
-          next: (res:any)=>{
-            this.getDataFunction()
-  
-            this.toastr.success(res.message,"SUCCESS")
-            this.updateJobiPanel.reset()
-            this.selectedTabIndex = 0
-  
-          },
-          error: (err)=>{
-            this.toastr.error(err.error.message,"ERROR")
-          }
-        })
-      }else{
-        const newData={
-          "id":this.jId,
-          "open":data.open,
-          "close":data.close,
-          "jodi":data.jodi
-      }
-        this.global.updateWithToken(newData,"jodi-panel/update",this.token).subscribe({
-          next: (res:any)=>{
-            this.getDataFunction()
-  
-            this.toastr.success(res.message,"SUCCESS")
-            this.updateJobiPanel.reset()
-            this.selectedTabIndex = 0
-  
-          },
-          error: (err)=>{
-            this.toastr.error(err.error.message,"ERROR")
-          }
-        })
-      }
-      
+submitUpdateJodiPanel(data: any) {
+  console.log(data);
+  console.log(this.token);
+  if (this.updateJobiPanel.invalid) {
+    this.toastr.warning("Fill all the fields", "WARN");
+  } else {
+    if (this.newJodi) {
+      // Adjust date to ensure the correct date is sent
+      const adjustedDate = new Date(data.date_time);
+      const timezoneOffset = adjustedDate.getTimezoneOffset() * 60000;
+      const localDateTime = new Date(adjustedDate.getTime() - timezoneOffset).toISOString();
 
+      const createData = {
+        "bazaar_id": data.bazaar_id,
+        "date_time": localDateTime,
+        "open": data.open,
+        "close": data.close,
+        "jodi": data.jodi,
+        "is_active": data.is_active
+      };
+
+      console.log(createData);
+      this.global.postWithToken(createData, "jodi-panel/create", this.token).subscribe({
+        next: (res: any) => {
+          this.getDataFunction();
+          this.toastr.success(res.message, "SUCCESS");
+          this.updateJobiPanel.reset();
+          this.selectedTabIndex = 0;
+        },
+        error: (err) => {
+          this.toastr.error(err.error.message, "ERROR");
+        }
+      });
+    } else {
+      const newData = {
+        "id": this.jId,
+        "open": data.open,
+        "close": data.close,
+        "jodi": data.jodi
+      };
+      this.global.updateWithToken(newData, "jodi-panel/update", this.token).subscribe({
+        next: (res: any) => {
+          this.getDataFunction();
+          this.toastr.success(res.message, "SUCCESS");
+          this.updateJobiPanel.reset();
+          this.selectedTabIndex = 0;
+        },
+        error: (err) => {
+          this.toastr.error(err.error.message, "ERROR");
+        }
+      });
     }
   }
+}
 
 
   // filter
