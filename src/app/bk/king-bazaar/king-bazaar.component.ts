@@ -183,10 +183,11 @@ export class KingBazaarComponent implements OnInit {
       this.updateKingForm.get('king_id').disable();
       this.updateKingForm.get('date').disable();
       this.kingId = data.king_id;
-      this.idDate = data.date;
+      const cuurentDate = this.localDate(data.date)
+      this.idDate = cuurentDate;
       const body = {
         king_id: data.king_id,
-        date: data.date,
+        date: cuurentDate,
       };
       console.log(body);
       this.globle
@@ -303,4 +304,15 @@ export class KingBazaarComponent implements OnInit {
         }
       })
   }
+
+
+  localDate(dateLo:any){
+    // local time 
+    const adjustedDate = new Date(dateLo);
+    const timezoneOffset = adjustedDate.getTimezoneOffset() * 60000;
+    const localDateTime = new Date(adjustedDate.getTime() - timezoneOffset).toISOString();
+
+    return localDateTime
+  }
+
 }
