@@ -289,6 +289,8 @@ export class StarlineBazaarComponent implements OnInit {
       } else {
         // create
         const isAc = data.is_active == 'yes' ? 1 : 0;
+        
+        
         const body = {
           starline_id: this.findById,
           date: this.findByDate,
@@ -332,19 +334,18 @@ export class StarlineBazaarComponent implements OnInit {
       (data.jodi == null && data.is_active == '') ||
       data.is_active == null
     ) {
+      const currentDate = this.localDate(data.date)
       const body = {
         starline_id: data.starline_id,
-        date: data.date,
+        date: currentDate,
         time: data.time,
       };
       this.findById = data.starline_id
       this.findByTime = data.time
-      // local time 
-      const adjustedDate = new Date(data.date);
-      const timezoneOffset = adjustedDate.getTimezoneOffset() * 60000;
-      const localDateTime = new Date(adjustedDate.getTime() - timezoneOffset).toISOString();
+
       
-      this.findByDate = localDateTime
+      
+      this.findByDate = this.localDate(data.date)
       console.log(this.findByTime)
       console.log(this.findByDate)
 
@@ -383,9 +384,10 @@ export class StarlineBazaarComponent implements OnInit {
 
   // by date
   getbyDateData(id: any, date: any) {
+    const currentDate = this.localDate(date)
     const bydate = {
       starline_id: id,
-      date: date,
+      date: currentDate,  
     };
     this.global
       .postWithToken(bydate, 'starline-jodi/by-date', this.token)
@@ -423,5 +425,14 @@ export class StarlineBazaarComponent implements OnInit {
     this.updateStarlineJodi.get('time').enable();
     this.updateStarlineJodi.get('date').enable();
     this.updateStarlineJodi.reset();
+  }
+
+  localDate(dateLo:any){
+    // local time 
+    const adjustedDate = new Date(dateLo);
+    const timezoneOffset = adjustedDate.getTimezoneOffset() * 60000;
+    const localDateTime = new Date(adjustedDate.getTime() - timezoneOffset).toISOString();
+
+    return localDateTime
   }
 }
