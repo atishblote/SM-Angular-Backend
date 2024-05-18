@@ -339,7 +339,12 @@ export class StarlineBazaarComponent implements OnInit {
       };
       this.findById = data.starline_id
       this.findByTime = data.time
-      this.findByDate = data.date
+      // local time 
+      const adjustedDate = new Date(data.date);
+      const timezoneOffset = adjustedDate.getTimezoneOffset() * 60000;
+      const localDateTime = new Date(adjustedDate.getTime() - timezoneOffset).toISOString();
+      
+      this.findByDate = localDateTime
       console.log(this.findByTime)
       console.log(this.findByDate)
 
