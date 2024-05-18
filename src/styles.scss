@@ -285,3 +285,21 @@ aside:hover .menu_item, aside:hover img.logo  {
   transition: 2s;
 }
 }
+
+@media screen and (max-width: 768px) {
+  .row{
+    display: block;
+  }
+  .col_6{
+    width: 100%;
+  }
+  .col_7{
+    width: 100%;
+  }
+  .col_3{
+    width: 100%;
+  }
+  .col_4{
+    width: 100%;
+  }
+}
